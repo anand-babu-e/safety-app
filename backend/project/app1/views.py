@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
+from django.conf import settings
 
 class SignupView(APIView):
     permission_classes = [AllowAny]
@@ -56,16 +58,33 @@ class SOSRequestView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-            sos_requests = SOSRequest.objects.filter(user=request.user)
-            serializer = SOSRequestSerializer(sos_requests, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        sos_requests = SOSRequest.objects.filter(user=request.user)
+        serializer = SOSRequestSerializer(sos_requests, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
         serializer = SOSRequestSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(user=request.user)
+            sos_request = serializer.save(user=request.user)
+            self.send_sos_email_to_contacts(request.user, sos_request)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def send_sos_email_to_contacts(self, user, sos_request):
+        contacts = EmergencyContact.objects.filter(user=user)
+        subject = "Emergency Alert!"
+        message = f"{user.username} has sent an SOS request. Emergency Type: {sos_request.emergency_type}. " \
+                  f"Location: ({sos_request.latitude}, {sos_request.longitude}). Message: {sos_request.message}"
+
+        for contact in contacts:
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [contact.email]
+            )
+
 
 class DeleteAccountView(APIView):
     permission_classes = [IsAuthenticated]
