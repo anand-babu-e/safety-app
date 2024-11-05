@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import EmergencyContactView, SOSRequestView, SignupView
+from .views import EmergencyContactView, SOSRequestView, SignupView,  DeleteAccountView, UserDetailView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
@@ -10,5 +10,7 @@ urlpatterns = [
     path('signup/', SignupView.as_view()),  
     path('token/refresh/', TokenRefreshView.as_view()),
     path('token/', TokenObtainPairView.as_view()),
+    path('delete-account/', DeleteAccountView.as_view()),
+    path('user-details/',UserDetailView.as_view())
 ]
 

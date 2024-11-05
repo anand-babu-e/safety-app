@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import EmergencyContact, SOSRequest
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+
 
 class SignupSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(write_only=True)
@@ -16,6 +16,11 @@ class SignupSerializer(serializers.ModelSerializer):
         if data['password'] != data['confirm_password']:
             raise serializers.ValidationError("Passwords do not match.")
         return data
+
+    def validate_email(self, value):
+        if not value:
+            raise serializers.ValidationError("Email is required.")
+        return value
 
     def create(self, validated_data):
         validated_data.pop('confirm_password')
@@ -33,3 +38,9 @@ class SOSRequestSerializer(serializers.ModelSerializer):
         model = SOSRequest
         fields = '__all__'
         read_only_fields = ['user'] 
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
