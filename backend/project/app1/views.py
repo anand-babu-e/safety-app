@@ -18,12 +18,7 @@ class SignupView(APIView):
 
 class EmergencyContactView(APIView):
     permission_classes = [IsAuthenticated]
-    def get(self, request, pk=None):
-        if pk:
-            contact = get_object_or_404(EmergencyContact, pk=pk, user=request.user)
-            serializer = EmergencyContactSerializer(contact)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
+    def get(self, request):
             contacts = EmergencyContact.objects.filter(user=request.user)
             serializer = EmergencyContactSerializer(contacts, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -60,12 +55,7 @@ class EmergencyContactView(APIView):
 class SOSRequestView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self, request, pk=None):
-        if pk:
-            sos_request = get_object_or_404(SOSRequest, pk=pk, user=request.user)
-            serializer = SOSRequestSerializer(sos_request)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
+    def get(self, request):
             sos_requests = SOSRequest.objects.filter(user=request.user)
             serializer = SOSRequestSerializer(sos_requests, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
