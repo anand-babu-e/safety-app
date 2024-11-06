@@ -73,9 +73,13 @@ class SOSRequestView(APIView):
 
     def send_sos_email_to_contacts(self, user, sos_request):
         contacts = EmergencyContact.objects.filter(user=user)
+
         subject = "Emergency Alert!"
-        message = f"{user.username} has sent an SOS request. Emergency Type: {sos_request.emergency_type}. " \
-                  f"Location: ({sos_request.latitude}, {sos_request.longitude}). Message: {sos_request.message}"
+        location_url = f"https://www.google.com/maps?q={sos_request.latitude},{sos_request.longitude}"
+        message = (f"{user.username} has sent an SOS request.<br>"
+                f"Emergency Type: {sos_request.emergency_type}.<br>"
+                f"Location: <a href='{location_url}'>{location_url}</a>.<br>"
+                f"Message: {sos_request.message}<br>")
 
         for contact in contacts:
             send_mail(
