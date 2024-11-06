@@ -1,6 +1,6 @@
 from rest_framework.permissions import AllowAny
-from .serializers import EmergencyContactSerializer, SOSRequestSerializer, SignupSerializer, UserSerializer
-from .models import EmergencyContact, SOSRequest
+from .serializers import EmergencyContactSerializer, SOSRequestSerializer, SignupSerializer, UserSerializer, IncidentSerializer
+from .models import EmergencyContact, SOSRequest, Incident
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -8,6 +8,9 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from django.conf import settings
+from .utils import calculate_distance
+from django.utils import timezone
+from datetime import timedelta
 
 class SignupView(APIView):
     permission_classes = [AllowAny]
@@ -105,3 +108,30 @@ class UserDetailView(APIView):
         user = request.user
         serializer = UserSerializer(user)
         return Response(serializer.data, status = status.HTTP_200_OK)
+
+class NearbyIncidentsView(APIView):
+    def get(self, request):
+        user_latitude = float(request.GET.get('latitude'))
+        user_longitude = float(request.GET.get('longitude'))
+
+        one_week_ago = timezone.now() - timedelta(weeks = 1)
+        incidents = Incident.objects.filter(timestamp__gte=one_week_ago).order_by('-timestamp')
+
+        nearby_incidents = []
+        for incident in incidents:
+            distance = calculate_distance(user_latitude, user_longitude, incident.latitude, incident.longitude)
+
+            if distance <= 5:
+                serialized_incident = IncidentSerializer(incident).data
+                serialized_incident['distance'] = round(distance, 2)
+                nearby_incidents.append(serialized_incident)
+
+        return Response({'incidents': nearby_incidents})
+
+    def post(self, request):
+        serializer = IncidentSerializer(data = request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)

@@ -10,15 +10,15 @@ class EmergencyContact(models.Model):
         
 class SOSRequest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    EMERGENCY_TYPES = [
-        ('vehicle', 'Vehicle Emergency'),
-        ('medical', 'Medical Emergency'),
-        ('other', 'Other Emergency'),
-    ]
-    emergency_type = models.CharField(max_length=20, choices=EMERGENCY_TYPES)
+    emergency_type = models.CharField(max_length=20)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     message = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-
+class Incident(models.Model):
+    incident_type = models.CharField(max_length = 20)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    description = models.TextField()
+    timestamp = models.DateTimeField()

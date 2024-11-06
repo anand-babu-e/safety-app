@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import EmergencyContact, SOSRequest
+from .models import EmergencyContact, Incident, SOSRequest
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
@@ -51,4 +51,9 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'email']
+
+class IncidentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Incident
+        fields = ['incident_type', 'latitude', 'longitude', 'description', 'timestamp']
 
