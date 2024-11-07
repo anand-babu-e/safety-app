@@ -1,0 +1,67 @@
+
+.guess h1 {
+    text-align: center;
+    color: #ced1d4;
+}
+
+.guess h2 {
+    text-align: center;
+    color: #d9534f;
+}
+
+.guess p {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.guess button {
+    background-color: #171718;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.guess button:hover {
+    background-color: #a5a8ac;
+}
+
+.guess .guessbutton:disabled {
+    background-color: #9e1a1a;
+    cursor: not-allowed;
+}
+
+.word-display {
+    font-size: 2em;
+    letter-spacing: 5px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.remaining-guesses {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 20px 0;
+}
+
+.guess .playagain {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    
+}
+.guessed-letter {
+    color: green; /* Change this to whatever color you want for guessed letters */
+    font-weight: bold; /* Optional: make guessed letters bold */
+}
+
+.hidden-letter {
+    color: #ced1d4; /* Change this to the color you want for hidden letters (underscores) */
+}
+.guess h1{
+    color: #2c3e50;
+}

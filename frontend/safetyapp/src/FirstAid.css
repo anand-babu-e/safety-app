@@ -1,0 +1,60 @@
+.container {
+    display: flex;
+    margin-top: 20px;
+  }
+  
+  .sidenav {
+    width: 200px;
+    background-color: #444242;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  .section h1{
+    text-align: center;
+} 
+  .section h2{
+    text-align: center;
+    font-size: 3em;
+} 
+ .section h4{
+     text-align: left;
+ } 
+  .sidenav a {
+    display: block;
+    padding: 6px 0;
+    color: rgb(184, 178, 178);
+    text-decoration: none;
+  }
+  
+  .sidenav a:hover {
+    background-color: #ddd;
+  }
+  
+  .content {
+    margin-left: 250px;
+    padding: 20px;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+  }
+  
+  .section-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section-images {
+    max-width: 100%;
+    height: 400px;
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  

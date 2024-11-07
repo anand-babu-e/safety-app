@@ -1,0 +1,95 @@
+
+/* 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f8fa;
+    margin: 0;
+    padding: 0;
+  } */
+  
+  .sos-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    padding: 20px;
+  }
+  
+  .sos-form-container form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .sos h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin: 0;
+    margin-top: 50px;
+  }
+  
+  .sos-form-container label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-top: 15px;
+  }
+  
+  .sos-form-container select,
+  .sos-form-container input[type="number"],
+  .sos-form-container textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: none;
+  }
+  
+  .sos-form-container textarea {
+    height: 80px;
+  }
+  
+  .sos-form-container button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+   .sos-form-container button:hover {
+    background-color: #ff3333;
+  }
+  
+  .sos-form-container p {
+    text-align: center;
+    color: #4caf50;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  @media (max-width: 500px) {
+    .sos-form-container form {
+      padding: 15px;
+    }
+  
+    .sos-form-container h2 {
+      font-size: 1.2em;
+    }
+  
+    .sos-form-container button {
+      font-size: 14px;
+    }
+  }
+  

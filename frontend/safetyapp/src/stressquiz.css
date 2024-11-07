@@ -1,0 +1,49 @@
+.stress {
+    margin: 20px;
+    height: max-content;
+  }
+.stress h1{
+    width: 100%;
+    text-align: center;
+    /* overflow-wrap: break-word; /* or word-wrap: break-word; */
+    /* word-break: break-all;   */
+}  
+ .stress h2, h3, h4 {
+    text-align: center;
+  }
+  
+.stress form {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+.stress label {
+    margin-left: 10px;
+  }
+  
+.stress button {
+    display: block;
+    margin: 20px auto;
+  }
+ .stress form > div {
+    margin-bottom: 15px;
+  }
+  
+.stress  form div > div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    height: 30px;
+  }
+  
+.stress  input[type="radio"] {
+    margin-right: 8px;
+    width:30px;
+    height: 15px;
+  }
+.level{
+    text-align: center;
+    font-size: 2em;
+}
+  
+  
