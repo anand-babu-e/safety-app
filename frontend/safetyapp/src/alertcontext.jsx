@@ -1,4 +1,3 @@
-// AlertContext.js
 import React, { createContext, useState } from 'react';
 
 export const AlertContext = createContext();

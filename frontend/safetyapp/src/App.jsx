@@ -14,9 +14,9 @@ import FirstAidPage from './FirstAid';
 import StressManagement from './StressTips';
 import CounselingService from './ConsultDoctor';
 import SOSRequestForm from './sos';
-
-
-
+import NearbyLocations from './NearbyLocations';
+import NearbyIncidents from './safety';
+import SelfDefense from './selfdefence';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,6 +26,7 @@ function App() {
   const [showEmergencyDropdown, setShowEmergencyDropdown] = useState(false);
   const [showStressDropdown, setShowStressDropdown] = useState(false);
   const [showGameDropdown, setShowGameDropdown] = useState(false);
+  const [showselfdefence, setSelfdefenceDropdown] = useState(false);
 
 
   const handleLogin = () => {
@@ -58,8 +59,21 @@ function App() {
               <span>Safety</span>
               {showSafetyDropdown && (
                 <div className="dropdown-menu">
+                   <div
+            className="sub-dropdown"
+            onMouseEnter={() => setSelfdefenceDropdown(true)}
+            onMouseLeave={() => setSelfdefenceDropdown(false)}
+          >
                   <Link to="/safety-tips">Safety Tips</Link>
-                  <Link to="/emergency-contacts">Safe Location Near me</Link>
+                  {showselfdefence && (
+              <div className="sub-dropdown-menu">
+                <Link to="/selfdefence">Self Defence for Women</Link>
+                <Link to="/guess">Guess the Animal Game</Link>
+              </div>
+            )}
+            </div>
+                  <Link to="/safety">Safe Location Near me</Link>
+                  
                 </div>
               )}
             </div>
@@ -73,8 +87,8 @@ function App() {
               {showEmergencyDropdown && (
                 <div className="dropdown-menu">
                   <Link to="/first-aid">First Aid</Link>
-                  <Link to="/Ambulance">Ambulance</Link>
-                  <Link to="/Police">Police</Link>
+                  <Link to="/nearby">Hospital</Link>
+                  <Link to="/nearby">Police</Link>
                 </div>
               )}
             </div>
@@ -137,6 +151,9 @@ function App() {
             <Route path="/stress-quiz" element={<StressQuiz />} />
             <Route path="/doctor" element={<CounselingService />} />
             <Route path="/sos" element={<SOSRequestForm />} />
+            <Route path="/nearby" element={<NearbyLocations />} />
+            <Route path="/safety" element={<NearbyIncidents />} />
+            <Route path="/selfdefence" element={<SelfDefense />} />
             <Route path="/stress-tips" element={<StressManagement />} />
           </Routes>
         </main>

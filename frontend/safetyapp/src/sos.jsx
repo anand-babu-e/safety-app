@@ -41,24 +41,24 @@ const SOSRequestForm = () => {
       message: message,
     };
 
-    try {
-      const response = await fetch('/api/sos-request/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Token ${YOUR_AUTH_TOKEN}`,  
-        },
-        body: JSON.stringify(data),
-      });
+    // try {
+    //   const response = await fetch('/api/sos-request/', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Authorization': `Token ${YOUR_AUTH_TOKEN}`,  
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
 
-      if (response.ok) {
-        setStatus('SOS Request sent successfully!');
-      } else {
-        setStatus('Error submitting SOS Request.');
-      }
-    } catch (error) {
-      setStatus('Network error, please try again.');
-    }
+    //   if (response.ok) {
+    //     setStatus('SOS Request sent successfully!');
+    //   } else {
+    //     setStatus('Error submitting SOS Request.');
+    //   }
+    // } catch (error) {
+    //   setStatus('Network error, please try again.');
+    // }
   };
 
   return (

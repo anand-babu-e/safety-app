@@ -1,0 +1,38 @@
+
+
+.safety #map {
+    height: 500px;
+    width: 75%;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .info-box {
+    padding: 10px;
+    border: 1px solid #ddd;
+    /* background-color: #f9f9f9; */
+    margin-top: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  #incident-info, #safety-rating {
+    margin-top: 10px;
+  }
+  
+  .info-box strong {
+    color: rgb(138, 136, 136);
+  }
+  
+  .info-box b {
+    color: #555;
+  }
+  
+  .safety h1 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px;
+  }
+  

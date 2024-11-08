@@ -3,13 +3,11 @@ import { AlertContext } from './AlertContext';
 import './Profile.css';
 
 const Profile = () => {
-  // State variables for profile data
   const [name, setName] = useState('John Doe');
   const [email, setEmail] = useState('john@example.com');
   const [password, setPassword] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
   const [emergencyContacts, setEmergencyContacts] = useState([
-    { name: 'Jane Doe', phone: '1234567890', email: 'jane@example.com' }
+    { name: 'Jane Doe', phone: '1234567890', email: 'jane@example.com', relationship:'' }
   ]);
 
   const { alertMessage, setAlertMessage } = useContext(AlertContext);
@@ -23,7 +21,6 @@ const Profile = () => {
     name: false,
     email: false,
     password: false,
-    mobileNumber: false,
     emergencyContacts: false,
     alertMessage: false,
   });
@@ -34,7 +31,7 @@ const Profile = () => {
 
   const handleAddContact = () => {
     if (emergencyContacts.length < 3) {
-      setEmergencyContacts([...emergencyContacts, { name: '', phone: '', email: '' }]);
+      setEmergencyContacts([...emergencyContacts, { name: '', phone: '', email: '', relationship:'' }]);
     } else {
       alert('You can only add up to 3 emergency contacts.');
     }
@@ -46,7 +43,6 @@ const Profile = () => {
     );
   };
 
-  // Update user's location
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -66,7 +62,6 @@ const Profile = () => {
     }
   };
 
-  // Send alert with location
   const sendAlertWithLocation = (latitude, longitude) => {
     const fullAlertMessage = `${alertMessage}\nLocation: https://www.google.com/maps?q=${latitude},${longitude}`;
     setAlertHistory([...alertHistory, { id: Date.now(), message: fullAlertMessage }]);
@@ -86,7 +81,6 @@ const Profile = () => {
 
   return (
     <div className="profile-page">
-      {/* Profile Information Section */}
       <section>
         <h3>Profile Information</h3>
         <div>
@@ -119,7 +113,7 @@ const Profile = () => {
           <button onClick={() => toggleEdit('password')}>{editing.password ? 'Save' : 'Edit'}</button>
         </div>
 
-        <div>
+        {/* <div>
           <label>Mobile Number: </label>
           {editing.mobileNumber ? (
             <input type="text" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
@@ -127,14 +121,15 @@ const Profile = () => {
             <span>{mobileNumber}</span>
           )}
           <button onClick={() => toggleEdit('mobileNumber')}>{editing.mobileNumber ? 'Save' : 'Edit'}</button>
-        </div>
+        </div> */}
       </section>
 
-      {/* Emergency Contacts Section */}
       <section>
         <h3>Emergency Contacts</h3>
         {emergencyContacts.map((contact, index) => (
           <div key={index}>
+            <label>{index+1}.</label>
+            <br/>
             <label>Contact Name: </label>
             {editing.emergencyContacts ? (
               <input
@@ -145,7 +140,7 @@ const Profile = () => {
             ) : (
               <span>{contact.name}</span>
             )}
-
+            <br/>
             <label>Phone: </label>
             {editing.emergencyContacts ? (
               <input
@@ -156,7 +151,7 @@ const Profile = () => {
             ) : (
               <span>{contact.phone}</span>
             )}
-
+            <br/>
             <label>Email: </label>
             {editing.emergencyContacts ? (
               <input
@@ -167,6 +162,17 @@ const Profile = () => {
             ) : (
               <span>{contact.email}</span>
             )}
+            <br/>
+            <label>Relationship: </label>
+            {editing.emergencyContacts ? (
+              <input
+                type="test"
+                value={contact.relationship}
+                onChange={(e) => updateContact(index, 'relationship', e.target.value)}
+              />
+            ) : (
+              <span>{contact.relationship}</span>
+            )}
           </div>
         ))}
         <button onClick={() => toggleEdit('emergencyContacts')}>
@@ -175,8 +181,8 @@ const Profile = () => {
         {emergencyContacts.length < 3 && <button onClick={handleAddContact}>Add Contact</button>}
       </section>
 
-      {/* Alert Message Section */}
-      <section>
+
+      {/* <section>
         <h3>Alert Message Content</h3>
         <div>
           <label>Alert Message: </label>
@@ -193,9 +199,8 @@ const Profile = () => {
           </button>
           {editing.alertMessage && <button onClick={handleSaveAlertMessage}>Save Alert Message</button>}
         </div>
-      </section>
+      </section> */}
 
-      {/* Alert History Section */}
       <section>
         <h3>Track Alerts Disseminated</h3>
         <ul>
