@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "leaflet-color-markers": "^0.1.0"
+    "axios": "^1.7.7",
+    "jwt-decode": "^4.0.0",
+    "leaflet-color-markers": "^0.1.0",
+    "react-router-dom": "^6.28.0"
   }
 }
