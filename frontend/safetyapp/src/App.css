@@ -8,19 +8,20 @@
   flex: 1; /* Takes up remaining space, pushing footer down if needed */
   padding-top: 60px; /* Adds space for the fixed navbar */
   padding-bottom: 20px; /* Adds space above footer */
-  /* margin-top: 60px; */
+  margin-top: auto;
 }
 
 /* Navbar styles */
 .navbar {
-  width: 100%;
+  width: 98%;
   background-color: #18222c;
   color: white;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-  padding: 10px 20px;
+  padding: 0 20px 0px 20px;
+  /* height: 100px; */
 }
 
 
@@ -28,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 10px 20px;
+  padding: 10px 30px;
   font-size: 15px;
   color: white;
 }
@@ -51,7 +52,10 @@
 .items a:hover, .items .submit-btn2:hover {
   background-color: #444;
 }
-
+/* .items img{
+  height: auto;
+  width: 100px;
+} */
 .submit-btn2 {
   background-color: #007bff;
   color: white;
@@ -59,6 +63,7 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-left: auto;
 }
 
 .submit-btn2:hover {
@@ -79,7 +84,7 @@ html, body {
   background-color: #110f0f;
   color: white;
   font-family: Arial, sans-serif;
-  /* height: 100%; */
+  width: 100%;
 }
 .dropdown-menu {
   position: absolute;

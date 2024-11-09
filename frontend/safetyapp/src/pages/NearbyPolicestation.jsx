@@ -15,9 +15,8 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
   return R * c; // Distance in km
 };
 
-const NearbyLocations = () => {
+const NearbyPolicestation= () => {
   const [userLocation, setUserLocation] = useState(null);
-  const [locationType, setLocationType] = useState("hospital");
   const [locationInfo, setLocationInfo] = useState(null);
   const mapRef = useRef(null); // Ref to hold map instance
   const markers = useRef([]); // Ref to store markers
@@ -43,20 +42,22 @@ const NearbyLocations = () => {
 
         initialMap.setView([userLatitude, userLongitude], 13);
         L.marker([userLatitude, userLongitude]).addTo(initialMap).bindPopup("You are here").openPopup();
+
+        // Fetch nearby hospitals immediately after setting user location
+        getNearbyLocations(userLatitude, userLongitude);
       });
     }
   }, []);
 
-  // Fetch nearby locations from Overpass API
-  const getNearbyLocations = (latitude, longitude, locationType) => {
+  // Fetch nearby hospitals from Overpass API
+  const getNearbyLocations = (latitude, longitude) => {
     const map = mapRef.current; // Get the map instance from the ref
     if (map) {
       // Clear existing markers
       markers.current.forEach(marker => map.removeLayer(marker));
       markers.current = []; // Reset markers
 
-      const amenity = locationType === "police" ? "police" : "hospital";
-      const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node(around:5000,${latitude},${longitude})[amenity=${amenity}];out;`;
+      const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node(around:5000,${latitude},${longitude})[amenity=hospital];out;`;
 
       fetch(overpassUrl)
         .then(response => response.json())
@@ -71,7 +72,7 @@ const NearbyLocations = () => {
             markers.current.push(marker); // Add marker to the array
 
             marker.bindPopup(`
-              <b>${location.tags.name || locationType.charAt(0).toUpperCase() + locationType.slice(1)}</b><br>
+              <b>${location.tags.name || "Hospital"}</b><br>
               Distance: ${distance.toFixed(2)} km
             `);
 
@@ -79,7 +80,7 @@ const NearbyLocations = () => {
             marker.on("click", () => {
               setLocationInfo({
                 name: location.tags.name || "Unknown",
-                type: locationType.charAt(0).toUpperCase() + locationType.slice(1),
+                type: "Hospital",
                 distance: distance.toFixed(2),
                 link: `https://www.google.com/maps?q=${locationLat},${locationLon}`
               });
@@ -92,31 +93,9 @@ const NearbyLocations = () => {
     }
   };
 
-
-  const handleNearbyClick = () => {
-    if (userLocation) {
-      getNearbyLocations(userLocation.latitude, userLocation.longitude, locationType);
-    } else {
-      alert("Fetching location... Please try again in a few seconds.");
-    }
-  };
-
   return (
     <div>
-      <h1>Nearby Locations</h1>
-
-      {/* Dropdown for selecting location type */}
-      <div id="nearby-options">
-        <button onClick={handleNearbyClick}>Show Nearby</button>
-        <select
-          value={locationType}
-          onChange={(e) => setLocationType(e.target.value)}
-          id="locationType"
-        >
-          <option value="hospital">Hospitals</option>
-          <option value="police">Police Stations</option>
-        </select>
-      </div>
+      <h1>Nearby Hospitals</h1>
 
       <div id="map"></div>
 
@@ -134,4 +113,4 @@ const NearbyLocations = () => {
   );
 };
 
-export default NearbyLocations;
+export default NearbyPolicestation;

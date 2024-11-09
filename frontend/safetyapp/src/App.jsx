@@ -15,7 +15,8 @@ import FirstAidPage from './pages/FirstAid';
 import StressManagement from './pages/StressTips';
 import CounselingService from './pages/ConsultDoctor';
 import SOSRequestForm from './pages/sos';
-import NearbyLocations from './pages/NearbyLocations';
+import NearbyLocations from './pages/NearbyHospital';
+import NearbyPolicestation from './pages/NearbyPolicestation';
 import NearbyIncidents from './pages/safety';
 import SelfDefense from './pages/selfdefence';
 import ProtectedRoute from "./protected";
@@ -69,7 +70,7 @@ function App() {
         <div>
           <nav className="navbar">
             <div className="items">
-              <h3>SafeApp</h3>
+              <img style={{ height: 'auto', width: '80px', borderRadius:'40px', backgroundPosition:'center', backgroundSize:'cover'}} src='/images/logo.jpg' alt='logo' />
               <Link to="/">Home</Link>
               {/* Navigation links */}
               <div 
@@ -108,8 +109,8 @@ function App() {
               {showEmergencyDropdown && (
                 <div className="dropdown-menu">
                   <Link to="/first-aid">First Aid</Link>
-                  <Link to="/nearby">Hospital</Link>
-                  <Link to="/nearby">Police</Link>
+                  <Link to="/hospital">Hospital</Link>
+                  <Link to="/police">Police</Link>
                 </div>
               )}
             </div>
@@ -163,7 +164,7 @@ function App() {
             <Routes>
               {/* Public Routes */}
               <Route path="/login" element={<Login onLogin={handleLogin} />} />
-              <Route path="/signup" element={<SignUp />} />
+              <Route path="/signup" element={<SignUpAndLogout />} />
 
               {/* Protected Routes */}
               <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
@@ -175,7 +176,8 @@ function App() {
               <Route path="/stress-tips" element={<ProtectedRoute><StressManagement /></ProtectedRoute>} />
               <Route path="/doctor" element={<ProtectedRoute><CounselingService /></ProtectedRoute>} />
               <Route path="/sos" element={<ProtectedRoute><SOSRequestForm /></ProtectedRoute>} />
-              <Route path="/nearby" element={<ProtectedRoute><NearbyLocations /></ProtectedRoute>} />
+              <Route path="/hospital" element={<ProtectedRoute><NearbyLocations /></ProtectedRoute>} />
+              <Route path="/police" element={<ProtectedRoute><NearbyPolicestation /></ProtectedRoute>} />
               <Route path="/safety" element={<ProtectedRoute><NearbyIncidents /></ProtectedRoute>} />
               <Route path="/selfdefence" element={<ProtectedRoute><SelfDefense /></ProtectedRoute>} />
               <Route path="/stress-quiz" element={<ProtectedRoute><StressQuiz /> </ProtectedRoute>}/>

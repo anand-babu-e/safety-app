@@ -33,12 +33,14 @@ const GuessTheWord = () => {
   useEffect(() => {
     if (remainingGuesses === 0) {
       setGameOver(true);
-    } else if (targetWord.split("").every(letter => guessedLetters.includes(letter))) {
+    } else if (
+      guessedLetters.length > 0 && // Ensure at least one guess was made
+      targetWord.split("").every(letter => guessedLetters.includes(letter))
+    ) {
       setGameOver(true);
-      setHasWon(true); // User won
+      setHasWon(true);
     }
   }, [remainingGuesses, guessedLetters, targetWord]);
-
   const renderWord = () => {
     return targetWord.split("").map((letter, index) =>
       guessedLetters.includes(letter) ? letter : "_"
@@ -80,7 +82,6 @@ const GuessTheWord = () => {
         </div>
       )}
 
-      {/* Show confetti only when the user has won */}
       {hasWon && <Confetti />}
     </div>
   );
