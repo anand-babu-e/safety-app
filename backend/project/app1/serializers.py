@@ -44,7 +44,8 @@ class SOSRequestSerializer(serializers.ModelSerializer):
         model = SOSRequest
         fields = '__all__'
         extra_kwargs = {
-            'user': {'read_only': True}  
+            'user': {'read_only': True},
+            'is_active': {'read_only': True}
         }
 
 class UserSerializer(serializers.ModelSerializer):

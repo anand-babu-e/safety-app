@@ -92,6 +92,32 @@ class SOSRequestView(APIView):
                 [contact.email]
             )
 
+class StopSOSRequestView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk=None):
+        try:
+            sos_request = SOSRequest.objects.get(pk=pk, user=request.user, is_active=True)
+            sos_request.is_active = False
+            sos_request.save()
+            self.send_safety_email_to_contacts(request.user, sos_request)
+            return Response({'message': 'SOS request stopped, and safety email sent.'}, status=status.HTTP_200_OK)
+        except SOSRequest.DoesNotExist:
+            return Response({'error': 'Active SOS request not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    def send_safety_email_to_contacts(self, user, sos_request):
+        contacts = EmergencyContact.objects.filter(user=user)
+        subject = "Safe Alert"
+        message = (f"{user.username} has reported they are safe.\n"
+                   f"Previous SOS request for {sos_request.emergency_type} has been canceled.\n"
+                   f"No further assistance is needed at this time.")
+        for contact in contacts:
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [contact.email]
+            )
 
 class DeleteAccountView(APIView):
     permission_classes = [IsAuthenticated]
