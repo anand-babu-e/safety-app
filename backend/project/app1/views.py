@@ -62,40 +62,44 @@ class EmergencyContactView(APIView):
 class SOSRequestView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def is_rate_limited(self, user):
-        # Create a unique key based on the user ID
-        key = f"rate_limit_{user.pk}"
-        
-        # Get the current count of requests for the user from the cache, default to 0 if not found
-        request_count = cache.get(key, 0)
-        
-        if request_count >= 3:  # Limit to 3 requests max per user
-            return True
-        
-        # If not rate-limited, increment the count and set the cache with a timeout of 2 minutes
-        cache.set(key, request_count + 1, timeout=120)  # 120 seconds = 2 minutes
-        return False
-
-    def post(self, request):
-        if self.is_rate_limited(request.user):
-            return Response(
-                {"detail": "Rate limit exceeded. Try again in 2 minutes."},
-                status=status.HTTP_429_TOO_MANY_REQUESTS
-            )
-
-        # Process the SOS request
-        serializer = SOSRequestSerializer(data=request.data)
-        if serializer.is_valid():
-            sos_request = serializer.save(user=request.user)
-            # self.send_sos_email_to_contacts(request.user, sos_request)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     def get(self, request):
         sos_requests = SOSRequest.objects.filter(user=request.user)
         serializer = SOSRequestSerializer(sos_requests, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        contacts = EmergencyContact.objects.filter(user=request.user)
+        if not contacts.exists():
+            return Response(
+                {"error": "No registered emergency contacts found. Please add contacts to send SOS requests."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         
+        serializer = SOSRequestSerializer(data=request.data)
+        if serializer.is_valid():
+            sos_request = serializer.save(user=request.user)
+            self.send_sos_email_to_contacts(request.user, sos_request)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def send_sos_email_to_contacts(self, user, sos_request):
+        contacts = EmergencyContact.objects.filter(user=user)
+        subject = "Emergency Alert!"
+        location_url = f"https://www.google.com/maps?q={sos_request.latitude},{sos_request.longitude}"
+        message = (f"{user.username} has sent an SOS request.\n"
+                   f"Emergency Type: {sos_request.emergency_type}.\n"
+                   f"Location: {location_url}.\n"
+                   f"Message: {sos_request.message}\n")
+
+        for contact in contacts:
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [contact.email]
+            )
+
 class StopSOSRequestView(APIView):
     permission_classes = [IsAuthenticated]
 
