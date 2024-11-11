@@ -44,7 +44,17 @@
   padding: 10px 30px;
   font-size: 15px;
   color: white;
-}
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+
 
 .items h3 {
   font-size: 24px;
@@ -194,9 +204,74 @@ html, body {
 }
 
 
+/* Base styles for the navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-left .logo {
+  margin-right: 20px;
+}
+
+.navbar-left .nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right .user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.navbar-right .user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Mobile Menu */
 @media (max-width: 768px) {
-  .items {
+  .navbar-left .nav-links {
+    display: none; /* Hide the links in mobile view */
+  }
+
+  .navbar-left .nav-links.active {
+    display: flex;
     flex-direction: column;
-    padding: 15px 0;
+    gap: 10px;
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    background-color: #333;
+    padding: 10px;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
   }
 }

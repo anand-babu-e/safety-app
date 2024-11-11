@@ -22,7 +22,7 @@ const NearbyIncidents = () => {
       }).addTo(mapRef.current);
 
       const userIcon = L.icon({
-        iconUrl: '/images/indicator.webp',
+        iconUrl: '/images/indicator.png',
         iconSize: [40, 40],
         iconAnchor: [16, 32],
         popupAnchor: [0, -32]

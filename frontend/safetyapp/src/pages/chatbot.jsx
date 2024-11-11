@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Card, Spin, Tag, Typography, List, Avatar, Button, Badge, notification } from 'antd';
-import ReactMarkdown from 'react-markdown';
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { HumanMessage } from "@langchain/core/messages"; 
-import carbonbuddy from 'C:\\Users\\288037\\Desktop\\safety-app\\frontend\\safetyapp\\public\\images\\W.E.L.L.png'; // Add a carbonbuddy image or icon for the chatbot avatar
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { PoweroffOutlined, MessageOutlined } from '@ant-design/icons';
+import carbonbuddy from '../assets/W.E.L.L.png';
+import { generateStressPrompt } from './Promptor';
 
-// Styling for the chatbot and its sliding effect
 const chatbotStyles = {
   position: 'fixed',
   bottom: '20px',
@@ -25,31 +24,30 @@ const chatContainerStyles = {
   position: 'fixed',
   bottom: '70px',
   right: '20px',
-  width: '500px',
+  width: '400px',
   height: '400px',
   backgroundColor: '#FFFFFF',
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.15)',
   borderRadius: '8px',
   overflowY: 'auto',
   padding: '20px',
-  display: 'none', // Initially hidden, will be shown on click
+  display: 'none',
   zIndex: 1000,
-  paddingBottom: '50px', // Add some space for the button at the bottom
 };
 
 const { Title, Text } = Typography;
 
-const Chatbot = ({ stressScore }) => {
+const Chatbot = ({ stressScore, responses }) => {
   const [suggestions, setSuggestions] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // Track if the chat window is open
-  const [showNotification, setShowNotification] = useState(true); // Track notification bubble
-  const [errorMessage, setErrorMessage] = useState(null); // Track error messages
+  const [isOpen, setIsOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  // Function to fetch AI suggestions based on stress score
   const fetchSuggestions = async () => {
     setLoading(true);
     setErrorMessage(null);
+    setShowNotification(false);
 
     try {
       const vision = new ChatGoogleGenerativeAI({
@@ -57,9 +55,9 @@ const Chatbot = ({ stressScore }) => {
         apiKey: 'AIzaSyABMmVzBkK-blSr9GfisbucUqYL9NIIszA',
       });
 
-      const prompt = `I have a stress level of ${stressScore}. Can you suggest ways to relieve stress?`;
+      const prompt = generateStressPrompt(responses); ;
       const contents = [new HumanMessage({ content: prompt })];
-
+      
       const response = await vision.call(contents);
       setSuggestions(response.content);
 
@@ -68,6 +66,7 @@ const Chatbot = ({ stressScore }) => {
         description: 'AI suggestions to relieve stress have been loaded successfully.',
       });
     } catch (error) {
+      console.log(error)
       setErrorMessage("Can't get suggestions now. Please try again later.");
       notification.error({
         message: 'Error',
@@ -80,6 +79,7 @@ const Chatbot = ({ stressScore }) => {
 
   return (
     <div>
+      {/* Chatbot Icon */}
       <div
         style={{
           ...chatbotStyles, 
@@ -88,77 +88,75 @@ const Chatbot = ({ stressScore }) => {
         onClick={() => setIsOpen(true)}
       >
         <Avatar src={carbonbuddy} style={{ marginRight: '10px' }} />
-        <span style={{ color: '#abde04' }}>CarbonCoach</span>
+        <span style={{ color: '#abde04' }}>StressCoach</span>
         {showNotification && (
           <Badge 
             count={1} 
             style={{
               backgroundColor: '#abde04',
               position: 'absolute',
-              top: '-30px',
-              left: '-160px',
-              width:'10px',
+              top: '-10px',
+              left: '-10px',
             }}
           />
         )}
       </div>
 
+      {/* Chatbot Container */}
       <div style={{ ...chatContainerStyles, display: isOpen ? 'block' : 'none' }}>
-        <Button onClick={() => setIsOpen(false)} color="danger" variant="outlined" style={{
-          position: 'absolute',
-          right: '20px',
-          width: '10px',
-          height: '30px',
-        }}>
-          <PoweroffOutlined />
-        </Button>
+        <Button 
+          onClick={() => setIsOpen(false)} 
+          style={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            borderColor: '#abde04',
+          }}
+          icon={<PoweroffOutlined />}
+        />
 
-        <Title level={4} style={{ color: '#abde04' }}>AI Suggestions</Title>
+        <Title level={4} style={{ color: '#abde04', textAlign: 'center' }}>AI Suggestions</Title>
+        
         <Card loading={loading} style={{ maxWidth: '100%' }}>
-          <div>
-            {loading ? (
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
-                <Spin size="large" tip="Getting AI suggestions..." />
-              </div>
-            ) : (
-              <div>
-                <List
-                  bordered
-                  dataSource={suggestions.split("\n")}
-                  renderItem={(item, index) => (
-                    <List.Item key={index}>
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                        <Tag color="#abde04" style={{ marginBottom: '10px' }}>
-                          Suggestion {index + 1}
-                        </Tag>
-                        <Text>{item}</Text>
-                      </div>
-                    </List.Item>
-                  )}
-                />
-              </div>
-            )}
-            {errorMessage && (
-              <Text type="danger" style={{ marginTop: '20px', display: 'block', textAlign: 'center' }}>
-                {errorMessage}
-              </Text>
-            )}
-          </div>
-          {!loading && !errorMessage && (
-            <Button
-              color="primary" variant="outlined" 
-              style={{
-                width:'fit-content',
-                position:'absolute',
-                bottom:'-200px',
-                right:'0px'
-              }}
-              onClick={fetchSuggestions}
-            >
-              Get AI Suggestions <MessageOutlined style={{marginTop:'2px'}}/>
-            </Button>
+          {loading ? (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
+              <Spin size="large" tip="Getting AI suggestions..." />
+            </div>
+          ) : (
+            <List
+              bordered
+              dataSource={suggestions ? suggestions.split("\n") : []}
+              renderItem={(item, index) => (
+                <List.Item key={index}>
+                  <Tag color="#abde04" style={{ marginBottom: '10px' }}>
+                    Suggestion {index + 1}
+                  </Tag>
+                  <Text>{item}</Text>
+                </List.Item>
+              )}
+            />
+          )}
+          {errorMessage && (
+            <Text type="danger" style={{ marginTop: '20px', display: 'block', textAlign: 'center' }}>
+              {errorMessage}
+            </Text>
           )}
         </Card>
+        
+        {!loading && !errorMessage && (
+          <Button
+            type="primary"
+            style={{
+              position: 'absolute',
+              bottom: '10px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+            }}
+            onClick={fetchSuggestions}
+          >
+            Get AI Suggestions <MessageOutlined />
+          </Button>
+        )}
       </div>
     </div>
   );
