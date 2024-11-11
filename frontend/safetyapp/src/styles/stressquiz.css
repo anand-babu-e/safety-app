@@ -5,8 +5,7 @@
 .stress h1{
     width: 100%;
     text-align: center;
-    /* overflow-wrap: break-word; /* or word-wrap: break-word; */
-    /* word-break: break-all;   */
+
 }  
  .stress h2, h3, h4 {
     text-align: center;
@@ -16,6 +15,9 @@
     max-width: 600px;
     margin: auto;
   }
+.stress h1,h2,h3,p{
+  color:#d3d3d3;
+}
   
 .stress label {
     margin-left: 10px;

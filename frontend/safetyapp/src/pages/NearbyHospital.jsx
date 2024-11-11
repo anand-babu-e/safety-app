@@ -39,11 +39,21 @@ const NearbyLocations = () => {
         const userLatitude = position.coords.latitude;
         const userLongitude = position.coords.longitude;
         setUserLocation({ latitude: userLatitude, longitude: userLongitude });
-
-        initialMap.setView([userLatitude, userLongitude], 13);
-        L.marker([userLatitude, userLongitude]).addTo(initialMap).bindPopup("You are here").openPopup();
-
-        // Fetch nearby hospitals immediately after setting user location
+    
+        // Create a custom icon
+        const customIcon = L.icon({
+          iconUrl: '/images/indicator.webp',
+          iconSize: [40, 40], 
+          iconAnchor: [16, 32], 
+          popupAnchor: [0, -32] 
+        });
+    
+        L.marker([userLatitude, userLongitude], { icon: customIcon })
+          .addTo(initialMap)
+          .bindPopup("You are here")
+          .openPopup();
+    
+        mapRef.current.setView([userLatitude, userLongitude], 13);
         getNearbyLocations(userLatitude, userLongitude);
       });
     }
@@ -95,7 +105,6 @@ const NearbyLocations = () => {
 
   return (
     <div>
-      <h1>Nearby Hospitals</h1>
 
       <div id="map"></div>
 

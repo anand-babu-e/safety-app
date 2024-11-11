@@ -43,15 +43,6 @@ const SafetyTips = () => {
         - **Maintain Personal Space**: Be cautious when approached by strangers and keep a comfortable distance when possible.
       `,
       image: travelSmartImage
-    // },
-    // {
-    //   title: "Coping with Stress and Building Resilience",
-    //   content: `
-    //     - **Practice Mindfulness**: Techniques such as deep breathing and meditation can help manage stress.
-    //     - **Engage in Regular Exercise**: Physical activity can improve mood and reduce feelings of anxiety.
-    //     - **Talk It Out**: Don’t hesitate to share your worries with trusted friends, family, or a counselor.
-    //   `,
-    //   image: resilienceImage
     }
   ];
 

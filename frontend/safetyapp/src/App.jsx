@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
-import { AlertProvider } from './pages/alertcontext';
 import Login from './pages/login';
 import SignUp from './pages/SignUp';
 import Home from './pages/home';
@@ -20,17 +19,19 @@ import NearbyPolicestation from './pages/NearbyPolicestation';
 import NearbyIncidents from './pages/safety';
 import SelfDefense from './pages/selfdefence';
 import ProtectedRoute from "./protected";
+import SafetyPage from './pages/safetyTravel';
 
 function SignUpAndLogout() {
   localStorage.clear()
   return <SignUp />
 }
-function Logout({ setIsLoggedIn }) {
+function Logout({ setIsLoggedIn, setShowDropdown }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.clear();
     setIsLoggedIn(false);
+    setShowDropdown(false)
     navigate('/login');
   };
 
@@ -65,12 +66,14 @@ function App() {
 
 
   return (
-    <AlertProvider>
       <Router>
         <div>
           <nav className="navbar">
             <div className="items">
-              <img style={{ height: 'auto', width: '80px', borderRadius:'40px', backgroundPosition:'center', backgroundSize:'cover'}} src='/images/logo.jpg' alt='logo' />
+              <div className='logo'>
+              <img style={{ height: 'auto', width: '90px', margin: '0'}} src='/images/W.E.L.L.png' alt='logo' />
+              {/* <p><strong>Wellness. Emergency. Life. Link.</strong></p> */}
+              </div>
               <Link to="/">Home</Link>
               {/* Navigation links */}
               <div 
@@ -90,11 +93,11 @@ function App() {
                   {showselfdefence && (
               <div className="sub-dropdown-menu">
                 <Link to="/selfdefence">Self Defence for Women</Link>
-                <Link to="/guess">Guess the Animal Game</Link>
+                <Link to="/safety-travel">Travel Tips</Link>
               </div>
             )}
             </div>
-                  <Link to="/safety">Safe Location Near me</Link>
+                  <Link to="/safety">Safety Check</Link>
                   
                 </div>
               )}
@@ -153,7 +156,7 @@ function App() {
                   {showDropdown && (
                     <div className="dropdown-menu">
                       <Link to="/profile">Profile</Link>
-                      <Logout setIsLoggedIn={setIsLoggedIn} />
+                      <Logout setIsLoggedIn={setIsLoggedIn} setShowDropdown={setShowDropdown}  />
                     </div>
                   )}
                 </div>
@@ -167,30 +170,32 @@ function App() {
               <Route path="/signup" element={<SignUpAndLogout />} />
 
               {/* Protected Routes */}
-              <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-              <Route path="/memgame" element={<ProtectedRoute><MemoryGame /></ProtectedRoute>} />
-              <Route path="/guess" element={<ProtectedRoute><GuessTheWord /></ProtectedRoute>} />
-              <Route path="/safety-tips" element={<ProtectedRoute><SafetyTips /></ProtectedRoute>} />
-              <Route path="/first-aid" element={<ProtectedRoute><FirstAidPage /></ProtectedRoute>} />
-              <Route path="/stress-tips" element={<ProtectedRoute><StressManagement /></ProtectedRoute>} />
-              <Route path="/doctor" element={<ProtectedRoute><CounselingService /></ProtectedRoute>} />
+              <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile setIsLoggedIn={setIsLoggedIn} />} />
+              <Route path="/memgame" element={<MemoryGame />} />
+              <Route path="/guess" element={<GuessTheWord />} />
+              <Route path="/safety-tips" element={<SafetyTips />} />
+              <Route path="/first-aid" element={<FirstAidPage />} />
+              <Route path="/stress-tips" element={<StressManagement />} />
+              <Route path="/doctor" element={<CounselingService />} />
               <Route path="/sos" element={<ProtectedRoute><SOSRequestForm /></ProtectedRoute>} />
-              <Route path="/hospital" element={<ProtectedRoute><NearbyLocations /></ProtectedRoute>} />
-              <Route path="/police" element={<ProtectedRoute><NearbyPolicestation /></ProtectedRoute>} />
-              <Route path="/safety" element={<ProtectedRoute><NearbyIncidents /></ProtectedRoute>} />
-              <Route path="/selfdefence" element={<ProtectedRoute><SelfDefense /></ProtectedRoute>} />
-              <Route path="/stress-quiz" element={<ProtectedRoute><StressQuiz /> </ProtectedRoute>}/>
+              <Route path="/hospital" element={<NearbyLocations />} />
+              <Route path="/police" element={<NearbyPolicestation />} />
+              <Route path="/safety" element={<NearbyIncidents />} />
+              <Route path="/selfdefence" element={<SelfDefense />} />
+              <Route path="/stress-quiz" element={<StressQuiz /> }/>
+              <Route path="/safety-travel" element={<SafetyPage /> }/>
+              
+
               {/* <Route path="/logout" element={<Logout />} /> */}
             </Routes>
           </main>
           <footer className="footer">
             <hr />
-            Copyright SafeApp.com | All rights reserved
+            Copyright W.E.L.L.com | All rights reserved
           </footer>
         </div>
       </Router>
-    </AlertProvider>
   );
 }
 

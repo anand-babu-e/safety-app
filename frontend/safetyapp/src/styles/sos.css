@@ -1,11 +1,4 @@
 
-/* 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f8fa;
-    margin: 0;
-    padding: 0;
-  } */
   
   .sos-form-container {
     display: flex;
@@ -16,7 +9,7 @@ body {
   }
   
   .sos-form-container form {
-    background-color: #fff;
+    /* background-color: #fff; */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -24,17 +17,12 @@ body {
     max-width: 400px;
   }
   
-  .sos h1 {
-    text-align: center;
-    color: #2c3e50;
-    margin: 0;
-    margin-top: 50px;
-  }
+
   
   .sos-form-container label {
     display: block;
     font-weight: bold;
-    color: #555;
+    color: #d3d3d3;
     margin-top: 15px;
   }
   

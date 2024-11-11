@@ -8,7 +8,6 @@ const SOSRequestForm = () => {
   const [message, setMessage] = useState('I am in danger');
   const [status, setStatus] = useState('');
 
-  // Use Geolocation API to get the user's current location
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -32,33 +31,13 @@ const SOSRequestForm = () => {
     const googleMapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
     const alertMessage = `Emergency Type: ${emergencyType}\nMessage: ${message}\nLocation: ${googleMapsLink}`;
 
-    alert(alertMessage);  // Show alert message with the details
-
+    alert(alertMessage); 
     const data = {
       emergency_type: emergencyType,
       latitude: parseFloat(latitude),
       longitude: parseFloat(longitude),
       message: message,
     };
-
-    // try {
-    //   const response = await fetch('/api/sos-request/', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Authorization': `Token ${YOUR_AUTH_TOKEN}`,  
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-
-    //   if (response.ok) {
-    //     setStatus('SOS Request sent successfully!');
-    //   } else {
-    //     setStatus('Error submitting SOS Request.');
-    //   }
-    // } catch (error) {
-    //   setStatus('Network error, please try again.');
-    // }
   };
 
   return (

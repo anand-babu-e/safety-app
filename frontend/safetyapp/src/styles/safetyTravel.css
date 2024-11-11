@@ -1,0 +1,53 @@
+.safety-page {
+    padding: 20px;
+    /* background-color: #f4f4f9; */
+    font-family: Arial, sans-serif;
+    color:#d3d3d3
+  }
+  
+  .safety-page h1 {
+    color: #d3d3d3;
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .safety-tips-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 columns */
+    gap: 30px;
+  }
+  
+  .safety-tip-box {
+    background: linear-gradient(135deg, #000000, #0f2027, #2c5364, #316c96);
+
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .safety-tip-box h3 {
+    color: #d3d3d3;
+    margin-bottom: 10px;
+  }
+  
+  .tips-list {
+    margin-top: 10px;
+  } 
+  .tip-item {
+    /* background-color: #f9f9f9; */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+   
+  .tip-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #d3d3d3;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  

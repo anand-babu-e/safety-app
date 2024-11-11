@@ -7,19 +7,19 @@
   
   .self-defense-container h1 {
     /* font-size: 2em; */
-    color: #333;
+    color: #d3d3d3;
     text-align: center;
   }
   
   .self-defense-container h2 {
     /* font-size: 1.5em; */
-    color: #444;
+    color: #d3d3d3;
     margin-top: 20px;
   }
   
   .self-defense-container h3 {
     /* font-size: 1.2em; */
-    color: #555;
+    color: #d3d3d3;
     margin-top: 15px;
   }
   .self-defense-container h4 {
@@ -31,7 +31,7 @@
   }
   
  .self-defense-container ol {
-    padding-left: 20px;
+    padding: 20px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 10px;

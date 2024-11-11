@@ -2,32 +2,37 @@
 
 .safety #map {
     height: 500px;
-    width: 75%;
+    width: 100%;
     margin-top: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
   }
   
-  .info-box {
+  .safety .info-box {
     padding: 10px;
     border: 1px solid #ddd;
-    /* background-color: #f9f9f9; */
+    width:fit-content;
+    text-align: center;
     margin-top: 10px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    left:10px;
+    color: rgb(24, 2, 2);
+    font-size: large;
     
   }
+
   
   #incident-info, #safety-rating {
     margin-top: 10px;
   }
   
   .info-box strong {
-    color: rgb(138, 136, 136);
+    color: rgb(20, 20, 20);
   }
   
   .info-box b {
-    color: #555;
+    color: rgb(24, 24, 24);
   }
   
   .safety h1 {

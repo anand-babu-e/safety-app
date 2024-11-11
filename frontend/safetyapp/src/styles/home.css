@@ -5,26 +5,63 @@
    margin-top: 100px;
 
 }
-.alert{
-    background-color: brown;
-    padding: 10px 20px; 
+
+.sos-button {
+    background: linear-gradient(135deg, #ff4b2b, #ce224a); 
+    color: #fff;
     font-size: 24px;
-    border: none; 
+    padding: 20px; 
+    border: none;
     border-radius: 50%; 
-    color: white; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease; 
     width: 160px; 
     height: 160px; 
-}
-      
-.alert:hover {
-    background-color: red; /* Darker green on hover */
-}
-.stressb{
-    background-color: seagreen;
-    height: 60px;
-}
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease;
+  }
+  
+  .sos-button:hover {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b); 
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3), 0 2px 5px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-2px); 
+  }
+  
+  .sos-button:active {
+    background: linear-gradient(135deg, #ff4b2b, #ff416c); 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transform: translateY(2px); 
+  }
+  
+  .sos-button:focus {
+    outline: none; 
+  }
+  
+  .stressb {
+    background: linear-gradient(135deg, #00bcd4, #009688); /* Gradient from light blue to teal */
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px; /* Slightly rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 50px;
+  }
+  
+  .stressb:hover {
+    background: linear-gradient(135deg, #2c5364, #1fa2ff); /* Reverse gradient on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+  }
+  
+  .stressb:active {
+    background: linear-gradient(135deg, #1fa2ff, #2c5364); /* Keep the gradient when pressed */
+    transform: translateY(2px); /* Slightly press the button down */
+  }
+  
+  .stressb:focus {
+    outline: none; /* Remove focus outline for better aesthetics */
+  }
+  
 .user-info {
     display: flex;
     align-items: center;

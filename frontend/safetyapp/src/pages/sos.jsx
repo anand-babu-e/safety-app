@@ -35,7 +35,7 @@ const SOSRequestForm = () => {
     const googleMapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
     const alertMessage = `Emergency Type: ${emergencyType}\nMessage: ${message}\nLocation: ${googleMapsLink}`;
 
-    alert(alertMessage);  // Show alert message with the details
+    // alert(alertMessage);  // Show alert message with the details
 
     // Prepare the data to be sent to the backend
     const data = {
@@ -57,17 +57,18 @@ const SOSRequestForm = () => {
       
       // Check if the request was successful
       if (response.status === 201) {
-        setStatus("SOS request sent successfully!");
+        // setStatus("SOS request sent successfully!");
+        alert(alertMessage); 
       }
     } catch (error) {
       console.error("Error sending SOS request:", error);
-      setStatus("Failed to send SOS request. Please try again.");
+      alert("Failed to send SOS request. Please try again.");
     }
   };
 
   return (
     <div className='sos'>
-      <h1>SOS Request Form</h1>
+      {/* <h1>SOS Request Form</h1> */}
       <div className='sos-form-container'>
         <form onSubmit={handleSubmit}>
           <label>

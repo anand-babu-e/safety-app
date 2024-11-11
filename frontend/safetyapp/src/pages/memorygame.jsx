@@ -1,4 +1,3 @@
-// src/MemoryGame.js
 import React, { useState, useEffect } from 'react';
 import '../styles/MemoryGame.css';
 import Confetti from 'react-confetti';

@@ -17,7 +17,7 @@ const SelfDefense = () => {
       </p>
 
       <div className="moves-section">
-        <h3>1. Hammer Strike</h3>
+        <h2>1. Hammer Strike</h2>
         <p>Use your car keys to perform a hammer strike if you feel unsafe.</p>
         <img src='/images/sd/selfdefense1.gif' alt = 'hammer strike' />
         <p>Another way to use your keys is to click them onto a lanyard to swing at your attacker.</p>
@@ -28,7 +28,7 @@ const SelfDefense = () => {
           <li>Thrust downward toward your target.</li>
         </ol>
 
-        <h3>2. Groin Kick</h3>
+        <h2>2. Groin Kick</h2>
         <p>A powerful kick to the groin can disable an attacker.</p>
         <img src='/images/sd/selfdefense3.gif' alt = 'groin kick' />
         <h4>To Perform</h4>
@@ -38,7 +38,7 @@ const SelfDefense = () => {
         </ol>
         <p><strong>Alternative:</strong> If your attacker is too close, thrust your knee toward the groin. Make sure you’re stabilized and not at risk of falling over.</p>
 
-        <h3>3. Heel Palm Strike</h3>
+        <h2>3. Heel Palm Strike</h2>
         <p>This move targets the nose or throat.</p>
         <img src='/images/sd/selfdefense4.gif' alt = 'heel palm strike' />
         <h4>To Perform</h4>
@@ -48,7 +48,7 @@ const SelfDefense = () => {
         </ol>
         <p><strong>Alternative:</strong> An open palm to the ears can be very disorienting.</p>
 
-        <h3>4. Elbow Strike</h3>
+        <h2>4. Elbow Strike</h2>
         <p>If the attacker is close, use your elbows.</p>
         <img src='/images/sd/selfdefense5.gif' alt = 'elbow strike' />
         <h4>To Perform</h4>
@@ -56,7 +56,7 @@ const SelfDefense = () => {
           <li>Stabilize yourself and bend your arm at the elbow.</li>
           <li>Strike with your elbow to the attacker’s neck, jawline, chin, or temple.</li>
         </ol>
-        <h3>5. Alternative Elbow strike</h3>
+        <h2>5. Alternative Elbow strike</h2>
         <p>Depending on how you’re standing when you’re initially attacked, you may be in a better position for variations on the elbow strike.</p>
         <img src='/images/sd/selfdefense6.gif' alt = 'alternative elbow strike' />
         <h4>To Perform from the front</h4>
@@ -69,7 +69,7 @@ const SelfDefense = () => {
           <li>Make sure you see the target.</li>
           <li>Bring your elbow up and pivot your opposite foot, rotating your hips and turning into the target, making contact with the back part of your elbow.</li>
         </ol>
-        <h3>6. Escape from a ‘bear hug attack’</h3>
+        <h2>6. Escape from a ‘bear hug attack’</h2>
         <p>For cases where the attacker is coming from behind, you’ll want to use this move.
              Focus on getting low and creating space to free yourself.</p>
         <img src='/images/sd/selfdefense7.gif' alt = 'Escape from a ‘bear hug attack’' />
@@ -81,7 +81,7 @@ const SelfDefense = () => {
           <li>This should give you space to turn fully, using another move to injure the face or strike the groin. 
               With the space these moves have created, you may be able to escape and run away.</li>
         </ol>
-        <h3>7. Escape with hands trapped</h3>
+        <h2>7. Escape with hands trapped</h2>
         <p>If your attacker comes from behind and traps your arms 
             (this is similar to a bear hug, but you won’t be able to move as freely), here’s what to do:</p>
         <img src='/images/sd/selfdefense8.gif' alt = 'Escape with hands trapped' />
@@ -93,7 +93,7 @@ const SelfDefense = () => {
               Keep your arms tight to your chest as you’re turning in.</li>
               <li>Stay aggressive with your knees and other counterattacks until you can disengage.</li>
         </ol>
-        <h3>8. Escape from side headlock</h3>
+        <h2>8. Escape from side headlock</h2>
         <p>When the attacker locks their arm around your head from the side, your first instinct should be to avoid getting choked</p>
         <img src='/images/sd/selfdefense9.gif' alt = 'Escape from side headlock' />
         <h4>To Perform</h4>
@@ -110,7 +110,7 @@ const SelfDefense = () => {
       </p>
 
       <div className="protection-alternatives">
-        <h3>Protection Alternatives</h3>
+        <h2>Protection Alternatives</h2>
         <ul>
           <li>Stay in a well-lit public area and seek help if you feel unsafe.</li>
           <li>Carry protective items like pepper spray, a personal alarm, or a small self-defense tool.</li>

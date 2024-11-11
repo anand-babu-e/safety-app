@@ -1,20 +1,10 @@
 import React, { useContext } from 'react';
-import { AlertContext } from './alertcontext';
 import { useNavigate } from 'react-router-dom';
 import '../styles/home.css';
 
 function Home({ isLoggedIn }) {
-  // const { alertMessage, location, updateLocation } = useContext(AlertContext);
   const alertnavigate = useNavigate();
-  const handleAlertClick = () => {
-    // updateLocation();
-    // if (location) {
-    //   console.log(`Sending Alert: ${alertMessage} at Latitude: ${location.latitude}, Longitude: ${location.longitude}`);
-    //   alert(`Alert sent: ${alertMessage} \nLocation: Latitude ${location.latitude}, Longitude ${location.longitude}`);
-    // } else {
-    //   alert("Fetching location... Please try again in a few seconds.");
-    // }
-  
+  const handleAlertClick = () => { 
       alertnavigate('/sos'); 
 }
     const navigate = useNavigate();
@@ -29,8 +19,8 @@ function Home({ isLoggedIn }) {
       <div className="tabs">
         <div>
           <h1>Are you Safe</h1>
-          <h3>If Not!!</h3>
-          <button onClick={handleAlertClick} className="alert">Send Alert</button>
+          <h2>If Not!!</h2>
+          <button onClick={handleAlertClick} className="sos-button">Send Alert</button>
         </div>
         <div>
           <h1>Are you Stressed</h1>

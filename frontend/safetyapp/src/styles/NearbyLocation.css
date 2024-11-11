@@ -10,23 +10,19 @@
     z-index: 1000; 
     max-height: 90vh; 
     overflow-y: auto; 
+    color: rgb(24, 2, 2);
+    left:10px;
   }
   
-  
+ 
+
   #map {
     height: 500px;
-    width: 75%;
+    width: 100%;
     margin-right: 270px; 
   }
   
-  
-  /* .info-box {
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    margin-top: 10px;
-  } */
-  
+
   #nearby-options {
     margin-bottom: 10px;
   }
