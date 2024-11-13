@@ -1,4 +1,4 @@
-/* src/MemoryGame.css */
+
 .memory-game {
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@
   }
   
   .card-back {
-    font-size: 2rem; /* Adjust as needed */
+    font-size: 2rem; 
     color: #555;
   }
   

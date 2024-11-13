@@ -25,11 +25,11 @@ const SignUp = () => {
         confirm_password: confirmPassword,
       });
 
-      setSuccessMessage(response.data.message);  // Show success message
-      setTimeout(() => navigate('/login'), 2000);  // Redirect to login after 2 seconds
+      setSuccessMessage(response.data.message);  
+      setTimeout(() => navigate('/login'), 2000);  
     } catch (err) {
       if (err.response && err.response.data) {
-        // Extract and display specific validation errors from the backend
+        
         const errorMessages = Object.values(err.response.data).flat().join(' ');
         setError(errorMessages);
       } else {

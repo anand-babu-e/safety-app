@@ -1,4 +1,4 @@
-// stressPrompter.js
+
 const stressData = {
     questions: [
       "In the LAST MONTH, how often have you been upset because of something that happened unexpectedly?",
@@ -10,10 +10,9 @@ const stressData = {
       "In the LAST MONTH, how often have you been able to control irritations in your life?",
       "In the LAST MONTH, how often have you felt that you were on top of things?",
     ],
-    answers: [] // Collect answers dynamically here or pass as an argument
+    answers: [] 
   };
   
-  // Generate prompt for AI based on stress data
   export const generateStressPrompt = (responses) => {
     let prompt = `
   I recently took a stress assessment quiz, and here are my responses:

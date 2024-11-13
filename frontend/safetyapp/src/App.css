@@ -5,9 +5,9 @@
 }
 
 .main-content {
-  flex: 1; /* Takes up remaining space, pushing footer down if needed */
-  padding-top: 60px; /* Adds space for the fixed navbar */
-  padding-bottom: 20px; /* Adds space above footer */
+  flex: 1;
+  padding-top: 60px; 
+  padding-bottom: 20px;
   margin-top: 20px;
 }
 .logo{
@@ -19,21 +19,17 @@
   margin: 0;
   font-size: 6px;
 }
-/* Navbar styles */
+
 .navbar {
   width: 98%;
-  /* background: rgba(28, 50, 64, 0.8); */
-  /* background-color: #1b2a36; */
-  /* background-color: #1E201E; */
   background: linear-gradient(90deg, #000000, #2c5364);
-  /* background: linear-gradient(90deg, #000000, #0f2027, #2c5364); */
   color: white;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   padding: 0 20px 0px 20px;
-  /* height: 100px; */
+ 
 }
 
 
@@ -45,7 +41,6 @@
   font-size: 15px;
   color: white;
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
   }
   
@@ -62,7 +57,6 @@
   margin: 0;
 }
 
-/* Navbar links */
 .items a, .items .submit-btn2 {
   text-decoration: none;
   color: white;
@@ -74,10 +68,7 @@
 .items a:hover, .items .submit-btn2:hover {
   background-color: #444;
 }
-/* .items img{
-  height: auto;
-  width: 100px;
-} */
+
 .submit-btn2 {
   background-color: #007bff;
   color: white;
@@ -86,6 +77,8 @@
   cursor: pointer;
   transition: background-color 0.3s;
   margin-left: auto;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .submit-btn2:hover {
@@ -204,7 +197,6 @@ html, body {
 }
 
 
-/* Base styles for the navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -246,10 +238,9 @@ html, body {
   margin-right: 10px;
 }
 
-/* Mobile Menu */
 @media (max-width: 768px) {
   .navbar-left .nav-links {
-    display: none; /* Hide the links in mobile view */
+    display: none; 
   }
 
   .navbar-left .nav-links.active {

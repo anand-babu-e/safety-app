@@ -78,7 +78,7 @@ class SOSRequestView(APIView):
         serializer = SOSRequestSerializer(data=request.data)
         if serializer.is_valid():
             sos_request = serializer.save(user=request.user)
-            self.send_sos_email_to_contacts(request.user, sos_request)
+            # self.send_sos_email_to_contacts(request.user, sos_request)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

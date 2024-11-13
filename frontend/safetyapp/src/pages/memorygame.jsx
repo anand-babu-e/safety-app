@@ -59,7 +59,6 @@ const MemoryGame = () => {
     setFlippedCards([]);
     setMoves(0);
     setGameOver(false);
-    // Reshuffle the cards
     const shuffledCards = [...cardImages, ...cardImages]
       .map((card) => ({ src: card, id: Math.random() }))
       .sort(() => Math.random() - 0.5);
@@ -82,7 +81,7 @@ const MemoryGame = () => {
             {flippedCards.includes(card) || matchedCards.includes(card.src) ? (
               <img src={card.src} alt="Card" />
             ) : (
-              <div className="card-back">⭐</div> // Placeholder for the card back
+              <div className="card-back">⭐</div> 
             )}
           </div>
         ))}

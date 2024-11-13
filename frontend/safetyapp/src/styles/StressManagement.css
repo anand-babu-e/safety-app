@@ -10,7 +10,6 @@
     color: #dde0e2;
   }
   
-  /* Common styling for all sections */
   .stress-management section {
     margin-bottom: 20px;
     padding: 10px;
@@ -29,7 +28,6 @@
     flex: 1;
   }
   
-  /* Styling for sections where image is below content */
   .intro {
     display: flex;
     flex-direction: column;
@@ -42,8 +40,6 @@
     height: auto;
     border-radius: 8px;
   }
-  
-  /* Styling for sections where image is beside content */
   section:not(.intro) .contents {
     display: flex;
     flex-direction: row;

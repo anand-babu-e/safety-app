@@ -15,20 +15,19 @@ const Login = ({ onLogin }) => {
     setError('');
 
     try {
-      // Send login request to Django backend
+
       const response = await axios.post('http://127.0.0.1:8000/api/token/', {
         username,
         password
       });
-      // Get token from response and save it to local storage
+
       const { access, refresh } = response.data;
       localStorage.setItem(ACCESS_TOKEN, access);
       localStorage.setItem(REFRESH_TOKEN, refresh);
 
-      // Notify the parent component about login status
-      onLogin(username);  // Now using the state variable 'username'
+      onLogin(username);  
 
-      // Redirect to the home page after successful login
+      
       navigate('/');
     } catch (err) {
       if (err.response && err.response.data) {
@@ -50,7 +49,7 @@ const Login = ({ onLogin }) => {
             <input
               type="text"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}  // Update state with input value
+              onChange={(e) => setUsername(e.target.value)}  
               required
             />
           </div>
@@ -59,7 +58,7 @@ const Login = ({ onLogin }) => {
             <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}  // Update state with input value
+              onChange={(e) => setPassword(e.target.value)}  
               required
             />
           </div>

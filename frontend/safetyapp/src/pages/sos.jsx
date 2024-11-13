@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Import axios for making API requests
+import axios from 'axios'; 
 import '../styles/sos.css'
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 
@@ -10,7 +10,7 @@ const SOSRequestForm = () => {
   const [message, setMessage] = useState('I am in danger');
   const [status, setStatus] = useState('');
 
-  // Use Geolocation API to get the user's current location
+
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -31,13 +31,11 @@ const SOSRequestForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Create a message with the current location and emergency details
+    
     const googleMapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
     const alertMessage = `Emergency Type: ${emergencyType}\nMessage: ${message}\nLocation: ${googleMapsLink}`;
 
-    // alert(alertMessage);  // Show alert message with the details
-
-    // Prepare the data to be sent to the backend
+    
     const data = {
       emergency_type: emergencyType,
       latitude: parseFloat(latitude),
@@ -55,9 +53,7 @@ const SOSRequestForm = () => {
         
       });
       
-      // Check if the request was successful
       if (response.status === 201) {
-        // setStatus("SOS request sent successfully!");
         alert(alertMessage); 
       }
     } catch (error) {
@@ -68,7 +64,6 @@ const SOSRequestForm = () => {
 
   return (
     <div className='sos'>
-      {/* <h1>SOS Request Form</h1> */}
       <div className='sos-form-container'>
         <form onSubmit={handleSubmit}>
           <label>

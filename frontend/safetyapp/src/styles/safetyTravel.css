@@ -1,6 +1,5 @@
 .safety-page {
     padding: 20px;
-    /* background-color: #f4f4f9; */
     font-family: Arial, sans-serif;
     color:#d3d3d3
   }
@@ -14,7 +13,7 @@
   
   .safety-tips-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Creates 2 columns */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 30px;
   }
   
@@ -35,7 +34,6 @@
     margin-top: 10px;
   } 
   .tip-item {
-    /* background-color: #f9f9f9; */
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);

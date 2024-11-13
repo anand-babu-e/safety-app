@@ -55,13 +55,12 @@
     
 }
 .guessed-letter {
-    color: green; /* Change this to whatever color you want for guessed letters */
-    font-weight: bold; /* Optional: make guessed letters bold */
+    color: green;
+    font-weight: bold;
 }
 
 .hidden-letter {
-    color: #ced1d4; /* Change this to the color you want for hidden letters (underscores) */
-}
+    color: #ced1d4; }
 .guess h1{
     color: rgb(226, 219, 219);
 }

@@ -34,7 +34,7 @@ const GuessTheWord = () => {
     if (remainingGuesses === 0) {
       setGameOver(true);
     } else if (
-      guessedLetters.length > 0 && // Ensure at least one guess was made
+      guessedLetters.length > 0 && 
       targetWord.split("").every(letter => guessedLetters.includes(letter))
     ) {
       setGameOver(true);

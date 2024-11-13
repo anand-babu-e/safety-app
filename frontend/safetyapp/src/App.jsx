@@ -49,8 +49,8 @@ function App() {
   const [showStressDropdown, setShowStressDropdown] = useState(false);
   const [showGameDropdown, setShowGameDropdown] = useState(false);
   const [showSelfdefence, setSelfdefenceDropdown] = useState(false);
-  const [user, setUser] = useState({ username: '' }); // Initially empty username
-  const [menuOpen, setMenuOpen] = useState(false); // State to toggle mobile menu
+  const [user, setUser] = useState({ username: '' }); 
+  const [menuOpen, setMenuOpen] = useState(false); 
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -146,13 +146,10 @@ function App() {
         </nav>
         <main className="main-content">
           <Routes>
-            {/* Public Routes */}
             <Route path="/login" element={<Login onLogin={handleLogin} />} />
             <Route path="/signup" element={<SignUpAndLogout />} />
-
-            {/* Protected Routes */}
             <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<Profile setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/profile" element={<ProtectedRoute><Profile setIsLoggedIn={setIsLoggedIn} /></ProtectedRoute>} />
             <Route path="/memgame" element={<MemoryGame />} />
             <Route path="/guess" element={<GuessTheWord />} />
             <Route path="/safety-tips" element={<SafetyTips />} />

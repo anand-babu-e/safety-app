@@ -1,4 +1,4 @@
-/* Container styles */
+
 .signup-container {
     max-width: 400px;
     margin: 0 auto;
@@ -7,15 +7,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
   }
-  
-  /* Heading */
+
   .signup-container h2 {
     font-size: 2rem;
     margin-bottom: 20px;
     color: rgb(233, 230, 230);
   }
   
-  /* Form styles */
   form {
     display: flex;
     flex-direction: column;
@@ -71,7 +69,6 @@
     text-decoration: underline;
   }
   
-  /* Responsive adjustments */
   @media (max-width: 768px) {
     .signup-container {
       padding: 15px;

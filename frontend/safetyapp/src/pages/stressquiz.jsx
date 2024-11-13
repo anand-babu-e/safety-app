@@ -1,6 +1,6 @@
 import '../styles/stressquiz.css';
 import React, { useState } from 'react';
-import Chatbot from './Chatbot'; // Import the Chatbot component
+import Chatbot from './Chatbot'; 
 import { generateStressPrompt } from './Promptor.jsx'; 
 
 const StressQuiz = () => {
@@ -78,7 +78,7 @@ const StressQuiz = () => {
   };
 
   const handleNavigate = () => {
-    // Replace with your navigation logic, such as redirecting to another page.
+    
     alert("Consider consulting a doctor for stress management.");
   };
 
