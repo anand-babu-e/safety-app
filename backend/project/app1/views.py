@@ -1,6 +1,7 @@
 from rest_framework.permissions import AllowAny
-from .serializers import EmergencyContactSerializer, SOSRequestSerializer, SignupSerializer, UserSerializer, IncidentSerializer
-from .models import EmergencyContact, SOSRequest, Incident
+from .serializers import EmergencyContactSerializer, SOSRequestSerializer, SignupSerializer, UserSerializer, IncidentSerializer, OTPRequestSerializer, OTPVerificationSerializer
+from django.contrib.auth.models import User
+from .models import EmergencyContact, SOSRequest, Incident, OTP
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -11,7 +12,7 @@ from django.conf import settings
 from .utils import calculate_distance
 from django.utils import timezone
 from datetime import timedelta
-from django.core.cache import cache
+import random
 
 
 class SignupView(APIView):
@@ -21,6 +22,63 @@ class SignupView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response({"message": "User created successfully"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class OTPRequestView(APIView):
+    def post(self, request):
+        serializer = OTPRequestSerializer(data = request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            try:
+                user = User.objects.get(email = email)
+                if user.is_active:
+                    return Response({"error": "User already verified. Please log in."}, status = status.HTTP_400_BAD_REQUEST)
+            except User.DoesNotExist:
+                return Response({"error":"No user found with this email."}, status = status.HTTP_400_BAD_REQUEST)
+            
+            OTP.objects.filter(email = email).delete()
+            otp = f"{random.randint(100000, 999999)}"
+            OTP.objects.create(email = email, otp = otp)
+
+            send_mail(
+                "Your OTP Code",
+                f"Your OTP code is {otp}. It will expire in 5 minutes.",
+                settings.DEFAULT_FROM_EMAIL,
+                [email]
+            )
+
+            return Response({"message": "OTP sent to your email."}, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class OTPVerificationView(APIView):
+    def post(self, request):
+        serializer = OTPVerificationSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            otp_input = serializer.validated_data['otp']
+
+            try:
+                otp_record = OTP.objects.get(email=email)
+                if otp_record.is_verified:
+                    return Response({"error": "OTP already verified."}, status=status.HTTP_400_BAD_REQUEST)
+                if otp_record.is_expired():
+                    return Response({"error": "OTP expired."}, status=status.HTTP_400_BAD_REQUEST)
+                if otp_record.otp != otp_input:
+                    return Response({"error": "Invalid OTP."}, status=status.HTTP_400_BAD_REQUEST)
+
+                otp_record.is_verified = True
+                otp_record.save()
+                user = User.objects.get(email=email)
+                user.is_active = True
+                user.save()
+
+                return Response({"message": "User activated successfully. You can now log in."}, status=status.HTTP_200_OK)
+            except OTP.DoesNotExist:
+                return Response({"error": "OTP not found for this email."}, status=status.HTTP_404_NOT_FOUND)
+            except User.DoesNotExist:
+                return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class EmergencyContactView(APIView):

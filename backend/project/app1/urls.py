@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import EmergencyContactView, SOSRequestView, SignupView,  DeleteAccountView, UserDetailView, NearbyIncidentsView, StopSOSRequestView
+from .views import EmergencyContactView, SOSRequestView, SignupView,  DeleteAccountView, UserDetailView, NearbyIncidentsView, StopSOSRequestView, OTPRequestView, OTPVerificationView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
@@ -13,5 +13,8 @@ urlpatterns = [
     path('delete-account/', DeleteAccountView.as_view()),
     path('user-details/',UserDetailView.as_view()),
     path('nearby-incidents/',NearbyIncidentsView.as_view()),
+    path('sos-requests/<int:pk>/stop/', StopSOSRequestView.as_view()),
+    path('request-otp/', OTPRequestView.as_view()),
+    path('verify-otp/', OTPVerificationView.as_view()),
 ]
 
