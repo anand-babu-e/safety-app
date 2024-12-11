@@ -103,8 +103,7 @@ html, body {
   background: linear-gradient(135deg, #000000, #0f2027, #2c5364, #193950);
   background-color: #3C3D37;
   color: #d3d3d3; 
-  /* font-family: Arial, sans-serif; */
-  font-family: "Trebuchet MS";
+  font-family: Arial, sans-serif;
   width: 100%;
 }
 .dropdown-menu {
