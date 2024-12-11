@@ -22,10 +22,10 @@ export default function Otp() {
                 setMessage("OTP sent to your email.");
             } else {
                 const errorData = await response.json();
-                setMessage(`Error: ${errorData.message || "Failed to request OTP."}`);
+                setMessage(`Error: ${errorData.error}`);
             }
         } catch (error) {
-            setMessage(`Error: ${error.message}`);
+            setMessage(`Error: Unable to send OTP to this email.`);
         }
     };
 

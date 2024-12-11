@@ -38,7 +38,10 @@ function Logout({ setIsLoggedIn, setShowDropdown }) {
   };
 
   return (
-    <button onClick={handleLogout}>Logout</button>
+    <button className="logout-button" onClick={handleLogout}>
+  Logout
+</button>
+
   );
 }
 
@@ -73,7 +76,7 @@ function App() {
         <nav className="navbar">
           <div className="navbar-left">
             <div className="logo">
-              <img style={{ height: 'auto', width: '90px', margin: '0' }} src="/images/W.E.L.L.png" alt="logo" />
+              <img style={{ height: 'auto', width: '60px', margin: '0' }} src="/images/W.E.L.L.png" alt="logo" />
             </div>
             <div className="nav-links">
               <Link style={{ color:'white'}}  to="/">Home</Link>
@@ -134,7 +137,7 @@ function App() {
             ) : (
               <div className="user-info" onMouseEnter={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)}>
                 <img src="download.jpg" alt="User Icon" className="user-icon" />
-                <span>{user.username}</span>
+                <span>{user.username[0].toUpperCase() + user.username.slice(1)}</span>
                 {showDropdown && (
                   <div className="dropdown-menu">
                     <Link to="/profile">Profile</Link>

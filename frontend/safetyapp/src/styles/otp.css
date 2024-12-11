@@ -5,6 +5,9 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    border: 1px solid white;
+    margin-top: 70px;
+    margin-bottom: 30px;
     /* background-color: rgb(43, 4, 43); */
 }
 
@@ -50,7 +53,8 @@ input {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 90%;
+    width: 100%;
+    margin-left:-3px;
 }
 
 .otp-button:hover {

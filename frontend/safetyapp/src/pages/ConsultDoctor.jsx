@@ -4,7 +4,7 @@ import '../styles/CounselingService.css';
 const CounselingService = () => {
   return (
     <div className="counseling-service">
-      <h1>Counseling Service</h1>
+      <h1>Counselling Service</h1>
       <section className="description">
         <p>
           We offers a free, telephone and email-based counseling service for individuals experiencing emotional and psychological distress.
