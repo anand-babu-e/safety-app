@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import '../styles/otp.css'; 
 
 export default function Otp() {
     const [email, setEmail] = useState("");
     const [otp, setOtp] = useState("");
     const [message, setMessage] = useState("");
+    const navigate = useNavigate();
 
     async function handleRequestOtp(){
         try {
@@ -39,6 +41,7 @@ export default function Otp() {
 
             if (response.ok) {
                 setMessage("OTP verified successfully.");
+                navigate('/login')
             } else {
                 const errorData = await response.json();
                 setMessage(`Error: ${errorData.message || "Failed to verify OTP."}`);

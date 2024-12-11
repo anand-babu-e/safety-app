@@ -141,12 +141,99 @@ const Profile = ({ setIsLoggedIn }) => {
     }
   };
 
-  return (
-    <div className="profile-page">
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
+//   return (
+//     <div className="profile-page">
+//       {isLoading ? (
+//         <p>Loading...</p>
+//       ) : (
+//         <>
+//           <div className="profile-info">
+//             <h2>Profile Information</h2>
+//             {userData && (
+//               <div>
+//                 <p><strong>Name:</strong> {userData.username}</p>
+//                 <p><strong>Email:</strong> {userData.email}</p>
+//                 <button onClick={handleDeleteAccount} style={{ color: 'red' }}>Delete Account</button>
+//               </div>
+//             )}
+//           </div>
+
+//           <div className="emergency-contact">
+//             <h2>Emergency Contacts</h2>
+//             <button onClick={() => setEditingContact({})}>Add New Contact</button>
+//             {editingContact && editingContact.id === undefined ? (
+//               <div>
+//                 <h3>Add New Contact</h3>
+//                 {['name', 'phone', 'email', 'relationship'].map((field) => (
+//                   <input
+//                     key={field}
+//                     type={field === 'email' ? 'email' : 'text'}
+//                     name={field}
+//                     placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+//                     value={newContact[field]}
+//                     onChange={(e) => handleChange(e, false)}
+//                   />
+//                 ))}
+//                 <button onClick={handleAddContact}>Add</button>
+//                 <button onClick={() => setEditingContact(null)}>Cancel</button>
+//               </div>
+//             ) : (
+//               emergencyContacts.map((contact) => (
+//                 <div key={contact.id} className="details">
+//                   {editingContact && editingContact.id === contact.id ? (
+//                     <div>
+//                       {['name', 'phone', 'email', 'relationship'].map((field) => (
+//                         <input
+//                           key={field}
+//                           type={field === 'email' ? 'email' : 'text'}
+//                           name={field}
+//                           value={editingContact[field]}
+//                           onChange={(e) => handleChange(e, true)}
+//                         />
+//                       ))}
+//                       <button onClick={handleSaveEdit}>Save</button>
+//                       <button onClick={() => setEditingContact(null)}>Cancel</button>
+//                     </div>
+//                   ) : (
+//                     <div>
+//                       <p><strong>Name:</strong> {contact.name}</p>
+//                       <p><strong>Phone:</strong> {contact.phone}</p>
+//                       <p><strong>Email:</strong> {contact.email}</p>
+//                       <p><strong>Relationship:</strong> {contact.relationship}</p>
+//                       <button onClick={() => setEditingContact(contact)}>Edit</button>
+//                       <button onClick={() => handleDeleteContact(contact.id)}>Delete</button>
+//                     </div>
+//                   )}
+//                 </div>
+//               ))
+//             )}
+//           </div>
+
+//           <div className="sos-req">
+//             <h2>SOS Requests</h2>
+//             {sosRequests.slice().reverse().map((request) => (
+//               <div key={request.id}>
+//                 <p><strong>Request ID:</strong> {request.id}</p>
+//                 <p><strong>Details:</strong> {request.emergency_type}, {request.message}</p>
+//                 <p><strong>Request Status:</strong> {request.is_active ? 'Active' : 'Not Active'}</p>
+//                 {request.is_active && (
+//                   <button onClick={() => handleSendSafeMessage(request.id)}>Send Safe Message</button>
+//                 )}
+//               </div>
+//             ))}
+//           </div>
+//         </>
+//       )}
+//     </div>
+//   );
+// };
+return (
+  <div className="profile-page">
+    {isLoading ? (
+      <p>Loading...</p>
+    ) : (
+      <div className="main-layout">
+        <div className="side-panel">
           <div className="profile-info">
             <h2>Profile Information</h2>
             {userData && (
@@ -157,59 +244,59 @@ const Profile = ({ setIsLoggedIn }) => {
               </div>
             )}
           </div>
-
           <div className="emergency-contact">
-            <h2>Emergency Contacts</h2>
-            <button onClick={() => setEditingContact({})}>Add New Contact</button>
-            {editingContact && editingContact.id === undefined ? (
-              <div>
-                <h3>Add New Contact</h3>
-                {['name', 'phone', 'email', 'relationship'].map((field) => (
-                  <input
-                    key={field}
-                    type={field === 'email' ? 'email' : 'text'}
-                    name={field}
-                    placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                    value={newContact[field]}
-                    onChange={(e) => handleChange(e, false)}
-                  />
-                ))}
-                <button onClick={handleAddContact}>Add</button>
-                <button onClick={() => setEditingContact(null)}>Cancel</button>
+          <h2>Emergency Contacts</h2>
+          <button onClick={() => setEditingContact({})}>Add New Contact</button>
+          {editingContact && editingContact.id === undefined ? (
+            <div>
+              <h3>Add New Contact</h3>
+              {['name', 'phone', 'email', 'relationship'].map((field) => (
+                <input
+                  key={field}
+                  type={field === 'email' ? 'email' : 'text'}
+                  name={field}
+                  placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                  value={newContact[field]}
+                  onChange={(e) => handleChange(e, false)}
+                />
+              ))}
+              <button onClick={handleAddContact}>Add</button>
+              <button onClick={() => setEditingContact(null)}>Cancel</button>
+            </div>
+          ) : (
+            emergencyContacts.map((contact) => (
+              <div key={contact.id} className="details">
+                {editingContact && editingContact.id === contact.id ? (
+                  <div>
+                    {['name', 'phone', 'email', 'relationship'].map((field) => (
+                      <input
+                        key={field}
+                        type={field === 'email' ? 'email' : 'text'}
+                        name={field}
+                        value={editingContact[field]}
+                        onChange={(e) => handleChange(e, true)}
+                      />
+                    ))}
+                    <button onClick={handleSaveEdit}>Save</button>
+                    <button onClick={() => setEditingContact(null)}>Cancel</button>
+                  </div>
+                ) : (
+                  <div>
+                    <p><strong>Name:</strong> {contact.name}</p>
+                    <p><strong>Phone:</strong> {contact.phone}</p>
+                    <p><strong>Email:</strong> {contact.email}</p>
+                    <p><strong>Relationship:</strong> {contact.relationship}</p>
+                    <button onClick={() => setEditingContact(contact)}>Edit</button>
+                    <button onClick={() => handleDeleteContact(contact.id)}>Delete</button>
+                  </div>
+                )}
               </div>
-            ) : (
-              emergencyContacts.map((contact) => (
-                <div key={contact.id} className="details">
-                  {editingContact && editingContact.id === contact.id ? (
-                    <div>
-                      {['name', 'phone', 'email', 'relationship'].map((field) => (
-                        <input
-                          key={field}
-                          type={field === 'email' ? 'email' : 'text'}
-                          name={field}
-                          value={editingContact[field]}
-                          onChange={(e) => handleChange(e, true)}
-                        />
-                      ))}
-                      <button onClick={handleSaveEdit}>Save</button>
-                      <button onClick={() => setEditingContact(null)}>Cancel</button>
-                    </div>
-                  ) : (
-                    <div>
-                      <p><strong>Name:</strong> {contact.name}</p>
-                      <p><strong>Phone:</strong> {contact.phone}</p>
-                      <p><strong>Email:</strong> {contact.email}</p>
-                      <p><strong>Relationship:</strong> {contact.relationship}</p>
-                      <button onClick={() => setEditingContact(contact)}>Edit</button>
-                      <button onClick={() => handleDeleteContact(contact.id)}>Delete</button>
-                    </div>
-                  )}
-                </div>
-              ))
-            )}
-          </div>
-
-          <div className="sos-req">
+            ))
+          )}
+        </div>
+         
+        </div>
+        <div className="sos-req">
             <h2>SOS Requests</h2>
             {sosRequests.slice().reverse().map((request) => (
               <div key={request.id}>
@@ -222,10 +309,11 @@ const Profile = ({ setIsLoggedIn }) => {
               </div>
             ))}
           </div>
-        </>
-      )}
-    </div>
-  );
-};
+
+      </div>
+    )}
+  </div>
+);
+                };
 
 export default Profile;

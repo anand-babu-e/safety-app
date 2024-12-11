@@ -20,6 +20,7 @@ import NearbyIncidents from './pages/safety';
 import SelfDefense from './pages/selfdefence';
 import ProtectedRoute from "./protected";
 import SafetyPage from './pages/safetyTravel';
+import Otp from './pages/Otp';
 
 function SignUpAndLogout() {
   localStorage.clear()
@@ -163,6 +164,7 @@ function App() {
             <Route path="/selfdefence" element={<SelfDefense />} />
             <Route path="/stress-quiz" element={<StressQuiz />} />
             <Route path="/safety-travel" element={<SafetyPage />} />
+            <Route path="/verify" element={<Otp />} />
           </Routes>
         </main>
         <footer className="footer">

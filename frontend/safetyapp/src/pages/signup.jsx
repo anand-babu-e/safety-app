@@ -26,7 +26,7 @@ const SignUp = () => {
       });
 
       setSuccessMessage(response.data.message);  
-      setTimeout(() => navigate('/login'), 2000);  
+      setTimeout(() => navigate('/verify'), 2000);  
     } catch (err) {
       if (err.response && err.response.data) {
         
