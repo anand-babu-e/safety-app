@@ -2,6 +2,8 @@ import '../styles/stressquiz.css';
 import React, { useState } from 'react';
 import Chatbot from './Chatbot'; 
 import { generateStressPrompt } from './Promptor.jsx'; 
+import { useNavigate } from 'react-router-dom';
+
 
 const StressQuiz = () => {
   const questions = [
@@ -42,6 +44,7 @@ const StressQuiz = () => {
   const reversedQuestions = [3, 4, 6];
   const [responses, setResponses] = useState(Array(questions.length).fill(''));
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   const handleAnswer = (index, answer) => {
     const newResponses = [...responses];
@@ -78,8 +81,7 @@ const StressQuiz = () => {
   };
 
   const handleNavigate = () => {
-    
-    alert("Consider consulting a doctor for stress management.");
+    navigate('/doctor')
   };
 
   const result = calculateScore();

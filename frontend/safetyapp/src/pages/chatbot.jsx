@@ -25,7 +25,7 @@ const chatContainerStyles = {
   bottom: '70px',
   right: '20px',
   width: '400px',
-  height: '400px',
+  height: '300px',
   backgroundColor: '#FFFFFF',
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.15)',
   borderRadius: '8px',
@@ -89,7 +89,7 @@ const Chatbot = ({ stressScore, responses }) => {
         onClick={() => setIsOpen(true)}
       >
         <Avatar src={StressCoach} style={{ marginRight: '10px' }} />
-        <span style={{ color: '##0f2027' }}>StressCoach</span>
+        <span style={{ color: 'black' }}>StressCoach</span>
         {showNotification && (
           <Badge 
             count={1} 
